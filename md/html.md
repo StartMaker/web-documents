@@ -29,3 +29,13 @@
 - thead、tbody、tfoot：表格头（ie8不支持）
 - caption：定义表格标题（ie8不支持）
 
+###### 扩展HTML语义
+
+1、aria：
+
+- ARIA的role属性：当没有合适语境时使用
+- ARIA的aria-属性：为tag添加更多语义的手段
+
+2、微格式：一组标准的命名约定和标记模式
+
+3、微数据：为html添加结构化数据
