@@ -103,6 +103,34 @@
        3、overflow属性值不是visible的元素
        4、display：inline-block、table-cell等
        
-   触发特性：
+###### 关于文字
+
+   1、em，当作为计算盒子模型大小时，根据其元素自身的font-size进行计算，在计算字体大小时，基于继承的大小进行缩放
+   
+   2、line-height，默认值为baseline，即子元素基线与父元素基线对齐
+   
+   3、text-transform，可实现大小写变换
+    
+   4、font-variant，可实现小型大写字母     
+   
+   5、字母及单词的间距控制，word-spacing单词间距、letter-spacing字母间距
+   
+   6、连字符，首先设置`<html lang='en'>`，再使用hyphens属性
+   
+   7、字体引入，第一种方式为`@font-face`可以对字体进行引入，第二种使用js引入字体
+    
+    @font-face：
+    字体引入规则：
+        font-family：必需，字体族名称
+        src：必需，url列表
+        font-weight：可选，字体粗细
+        font-style：可选，字体样式
+     引入方式：
+        1、在字体下载完成前暂缓显示文本，可能在低网速下造成卡顿
+        2、在字体下载完成前使用别的字体替代，会造成字体闪屏
+     web font loader：
+     确保在网速慢的情况下也不会妨碍浏览器内容显示
         
-        
+   8、font-size-adjust：当字体无法加载使用后备字体时，后备字体会根据此属性的值调整字体的大小，通常会是原来的一半，所以在引入字体时，我们需要将其设置为100%
+   
+   9、高级排版特性，略    
