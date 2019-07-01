@@ -12,7 +12,7 @@ react原理：https://react.jokcy.me/book/api/react.html
 
 #### 常用库：
 
-react组件：antd、elementUI
+MVVM组件库：antd、elementUI
 
 文件处理：xlsx.js
 
