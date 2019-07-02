@@ -10,6 +10,10 @@ react原理：https://react.jokcy.me/book/api/react.html
 
 特殊字符：http://caibaojian.com/tools/code
 
+学习资料：http://www.52studyit.com
+
+云盘：云盘精灵
+
 #### 常用库：
 
 MVVM组件库：antd、elementUI
