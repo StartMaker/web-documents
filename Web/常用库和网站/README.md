@@ -35,3 +35,5 @@ MVVM组件库：antd、elementUI
 小型项目服务器渲染：Next.js
 
 大型项目服务器渲染：koa.js、express.js、egg.js
+
+桌面应用：Electron（基于nodejs和谷歌浏览器）
