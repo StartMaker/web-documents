@@ -16,6 +16,8 @@ react原理：https://react.jokcy.me/book/api/react.html
 
 #### 常用库：
 
+动态polyfill：https://cdn.polyfill.io/v2/polyfill.js
+
 MVVM组件库：antd、elementUI
 
 文件处理：xlsx.js
