@@ -141,8 +141,78 @@
    
    2、关于颜色值：rgb代表red、green、blue三原色（可以是255以内，可以是百分比），十六进制法也和rgb（）表示法类似
    
-   ```
       css新规范：
-        a、hsl（）：
-        b、rgba（）：
-        c、hsla（）：
+        a、hsl（）：色盘表示（函数表示法）
+        b、rgba（）：rgb的增强
+        c、hsla（）：hsl的增强
+   3、rgba/hsla的透明度与opacity的区别，opacity可以使元素及其子元素设置透明
+   
+   ##### 背景图片
+   
+  1、background-repeat：决定背景图片是否需要重复
+  
+  2、添加background-color很重要，以防图片加载失败
+  
+  3、图片格式：JPEG（有损压缩，损失细节高，不支持透明度）、PNG（无损压缩，不适合文件过大照片，适合图标、插图等，支持阿尔法透明）、GIF（早期的位图格式，与PNG相似，支持透明度，不支持阿尔法分极，因此边缘会出现锯齿）、SVG（矢量图片）、WebP（兼容性参差不齐）     
+  ===> 矢量图：缩放不失真，位图：缩放失真
+  
+  4、雪碧图属性（background-position）===> bug多，不兼容IE8及以下低版本浏览器
+  
+  5、background-clip：背景图裁剪，background-origin：背景图定位原点
+  
+  6、背景图大小：background-size（百分比不是相对图片大小，而是相对容器的大小）
+  
+  7、背景图附着：background-attachment（设置背景图是否可滚动）===> 移动端兼容性较差
+  
+  8、多重背景：设置多组图片来作为背景，一个元素设置多张图片，多个值用分号隔开
+  
+  ##### 边框和圆角
+  
+ 1、边框：border
+ 
+    与outline的区别：
+        1、border会占位置，而outline不会占位置
+        2、border可以设置一边或者多边的属性，而outline只能一次设置四边
+        3、outline兼容性与border相比较差，且在不同浏览器上的显示有差异
+         
+ 2、圆角：border-radius（IE8及更早版本不支持该属性，Opera Mini不支持该属性）
+ 
+ 3、边框图片：border-image（只兼容IE10后的浏览器，且在不同浏览器上有bug）
+ 
+ ##### 盒阴影
+ 
+ 1、box-shadow：x轴偏移，y轴偏移，模糊半径，扩展半径，阴影颜色
+ 
+ 2、属性值 inset：内阴影
+ 
+ 3、多阴影：
+ 
+ ##### 渐变
+ 
+ 1、liner-gradient()：
+ 
+ 2、重复渐变：repeating-liner-gradient
+ 
+ ##### 为嵌入的图片或元素添加样式
+ 
+ 1、max-width：100% 可以使img不超出父容器宽度
+ 
+ 2、可保持宽高比的容器：
+ 
+    iframe和object就属于这种情况：
+        可以使用以下代码
+            .object-wrapper{
+                width: 100%;
+                height: 0;
+                padding-bottom: 75%;
+                position: relative;
+            }
+            .object-wrapper>iframe{
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+ 
+ 3、减少图片大小（合理压缩图片或使用合理的图片格式，可提升加载速度）
