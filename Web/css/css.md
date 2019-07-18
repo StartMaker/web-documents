@@ -215,4 +215,93 @@
                 left: 0;
             }
  
- 3、减少图片大小（合理压缩图片或使用合理的图片格式，可提升加载速度）
+3、减少图片大小（合理压缩图片或使用合理的图片格式，可提升加载速度）
+ 
+ ##### 内容布局
+ 
+1、定位：position
+ 
+    static：块级元素垂直堆叠
+    relative：相对于初始位置进行定位
+    absolute：相对于非static定位的祖先元素或html元素，定位元素会脱离文档流===>适合弹出层等一些覆盖其他内容的组件
+    fixed：
+    
+    z-index：堆叠次序，非static的元素会根据深度依次叠放，设置小于1的opacity也会触发堆叠次序，transform、filter也会触发此属性
+    
+2、 水平布局
+
+    浮动：float
+    行内块：span、time、a等标签
+        垂直对齐：vertical-align(设置了此属性影响的高度是整个行内块，未设置的取决于其line-height和font-size的高度)
+            middle：行内块的中心点与这行文本的中心点对齐
+            top
+            bottom
+            baseline
+        行内块空隙问题
+            如下代码
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Title</title>
+                    <script src="./index.js"></script>
+                    <style type="text/css">
+                        .list{
+                            height: 250px;
+                            width: 400px;
+                            outline: 1px solid #000;
+                            /*清除默认样式*/
+                            padding-inline-start: 0;
+                            margin-block-start: 0;
+                            margin-block-end: 0;
+                            /*line-height: 500px;*/
+                        }
+                        .list>li{
+                            display: inline-block;
+                            outline: 1px solid #000;
+                            width: 25%;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <ul class="list">
+                        <li>22</li>
+                        <li>22</li>
+                        <li>22</li>
+                        <li>22</li>
+                    </ul>
+                </body>
+                </html>
+            li标签虽然都设置了width为25%，但依然出现了换行，在浏览器呈现中，每个li标签之间有空隙，
+            解决空隙方法（换行符变成了空白符）：
+                1、将每个li标签写在一行，如
+                    <ul>
+                        <li></li><li></li>
+                    </ul>
+                   但这种写法对程序员不太友好，不建议这样做    
+                2、把每个包含的标签（这里是ul标签）设置 'font-size：0;'，font-size会引发继承
+                3、空隙为4px，我们可以设置margin等属性来除去这4px的影响
+                4、使用table布局来除去间隙
+                5、使用float浮动块
+                6、flex布局
+                ...
+
+3、flexbox（不兼容IE8及老版，部分IE部分支持此布局）
+
+    重点看看，不解释 ，略略略...
+    http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html 
+    
+    关于flex后备方案：（解决flex不兼容的情况）
+        将可伸缩项加上float或者display：inline-block声明
+        
+4、
+
+##### 响应式布局
+
+1、媒体查询：
+
+    @media（IE8及更老版本不支持）
+    
+2、浏览器视口：
+
+    
