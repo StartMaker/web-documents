@@ -31,3 +31,5 @@ function createIndex(Com){
 }
 
 //使用 createIndex(Index)
+
+//高阶组件如何读取子节点
