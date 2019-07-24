@@ -24,4 +24,9 @@
     改：replaceNode()、insertNode()等
     注意事项：兼容性处理时需查询api兼容性
     
+##### 3、window对象：在ECMAScript扮演全局对象的角色
+
+    
+##### 4、location对象：提供当前窗口中加载的文档相关信息，还提供一些导航功能
+    
     
