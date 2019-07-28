@@ -88,3 +88,27 @@ http://lynnelv.github.io/js-event-loop-nodejs
     执行 socket 的 close 事件回调
         
     
+使用场景：
+
+    I/O密集型：SSS
+    CPU密集型：需要合理配置node任务
+    分布式应用
+    
+##### 异步编程解决方案
+
+    1、发布/订阅模式
+    2、promise/deferred
+    3、流程控制库（第三方）
+    
+##### 垃圾回收机制
+
+    新生代算法：
+        Scavenge：
+            优势：快
+            缺点：内存使用高
+        Mark-Sweep：
+            优势：占用内存低
+            缺点：内存碎片化，处理较慢 
+        Mark-Compact：
+            优势：能够处理内存碎片化
+            缺点：处理很慢
