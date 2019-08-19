@@ -18,13 +18,27 @@
     
 六种基本类型：
 
-    null： 未赋值的对象 => 因此 typeof null === 'object'
-    undefined： 未赋值的常量
+    null：尚未存在的对象 => typeof null === 'object'是JavaScript遗留的bug
+        JavaScript中二进制前三位都为0的话会被判定为object，而null的二进制表示全为0，自然前三位也为0
+    undefined： 未赋值的变量
     number： 数字（精度为64） => BigNumber.js可以实现大数运算
     string：字符串
     boolean： 布尔
     symbol: es6增加，唯一变量 new Symbol(1) !=== new Symbol(1)
+
+内置对象：
     
+    String：字符串对象
+    Number： 数字对象
+    Boolean：布尔对象
+    Object
+    Function：函数对象
+    Array：数组对象
+    Date：时间对象
+    RegExp：正则对象
+    Error：Error对象
+        隐式声明：在str.length时，js会隐式执行new String(str).length，所以这造成了基本类型有length属性的原因；很多基本类型都有其隐式声明，隐式声明如立即执行函数一样，立即创建，立即执行，立即销毁
+        
 其他类型：
     
     function：函数
@@ -75,3 +89,38 @@
             1、会遍历原型上的键名
             2、任意顺序遍历
             3、若遍历的为数组，则1、2、3等会转化为字符串'1'，'2'，'3'
+            
+常用方法：
+
+    Array：
+        a = []; a[4] = 1; => a.length === 4
+        a = []; a.length = 4 => a[0] === undefained
+        a = [1,2]; a.length = 1 => a[2] === undefined(a[2]会被移除)
+        数组检测：a、instanceof b、isArray c、Object.prototype.toString.call()
+        转换方法：a、toString b、valueOf c、toLocalString d、join
+            toString和toLocalString：会优先执行toString方法
+        栈方法：push（进栈，array.length++）、pop（出栈，array.length--）
+        队列方法：shift（取得第一项，array.length--）unshift（推入第一项，array.length++）
+        重排序方法：reverse（数组反转），sort（数组排序）
+        数组操作方法：slice（截取数组，不会影响原数组），concat（合并数组）、splice（删除、插入、替换）
+            splice：
+                splice(0,2) ==> 删除前两项
+                splice(2,0,'rend','green') ==> 插入两项
+                splice(2,1,'red') ==> 替换一项
+        位置方法：indexOf（查找数组下标序号），lastIndexOf（从后往前查找数组下标序号）==> 引用类型是对比的地址
+        迭代方法：every、filter、forEach、map、some    
+        归并方法：reduce（接收四个参数，前一个值、当前值、项的索引值、数组对象），reduceRight（从右边向前遍历）       
+        
+ 关于ES6新的数据类型：Symbol、Map和Set
+ 
+    Symbol：(在使用时不能使用new命令，因为Symbol是基本类型)
+        可以接受一个字符串作为参数
+    Set：（类似于没有重复字段的数组,可理解为新类型的数组）===> 可被迭代
+        存储的基本类型或者对象都是唯一值，可以用作数组去重等(对象的唯一性判断存储的地址是否一致)
+    Map：（可以接受object的对象,可理解为新类型的对象） ===> 可被迭代
+        键名可接受任何数据类型
+        可以接收一个二维键值对数组(第二维数组第三位及之后的项会被忽略)，如 let a = new Map([[1,2]]) === let a = new Map(); a.set(1,2);
+        
+        
+ 
+             
