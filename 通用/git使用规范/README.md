@@ -31,6 +31,7 @@ http://www.ruanyifeng.com/blog/2014/06/git_remote.html
         git fetch：一旦远程主机的版本库有了更新（Git术语叫做commit），需要将这些更新取回本地（与git pull有区别）
         git romate：指定管理主机名
         git rebase: 变基操作
+        git init: 初始化,新建.git文件
         
 4、版本管理的几个关键点：
     
