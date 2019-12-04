@@ -14,6 +14,10 @@ react原理：https://react.jokcy.me/book/api/react.html
 
 云盘：云盘精灵
 
+某博客网站： https://lq782655835.github.io/blogs
+
+裁剪插件： https://fengyuanchen.github.io/cropper
+
 #### 常用库：
 
 动态polyfill：https://cdn.polyfill.io/v2/polyfill.js

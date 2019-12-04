@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+<script type="application/javascript">
+    let root = document.getElementById('root');
+    let current = root;
+    let a = {};
+    let p = a;
+    for(let i = 0; i < 3000; i++) {
+        window.requestAnimationFrame(function () {
+          p.b = {};
+          p = p.b;
+          let node = document.createElement('div');
+
+          current.appendChild(node);
+          current = node;
+          if (i === 2999) {
+            node.setAttribute('id', 'mark');
+          }
+        });
+    }
+    window.setTimeout(function () {
+        console.log(new Date().getTime());
+        console.log(document.getElementById('mark'));
+        console.log(new Date().getTime());
+    },0)
+</script>
+</html>
