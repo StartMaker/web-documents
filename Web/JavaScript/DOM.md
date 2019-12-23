@@ -38,3 +38,16 @@
     改：replaceNode()、insertNode()等
     注意事项：兼容性处理时需查询api兼容性
     
+##### 3、dom的两种节点集合：NodeList和HTMLCollection
+
+    NodeList： node.childNodes()、document.querySelectorAll()方法
+        
+        可以包含各种类型的节点
+        
+        可以使用forEach方法和length属性
+    
+    HTMLCollection： document.getElementsByTagName()
+    
+        只能包含HTML元素节点
+    
+        实例是动态的集合，节点的变化会实时反映在集合中

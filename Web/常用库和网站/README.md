@@ -18,6 +18,8 @@ react原理：https://react.jokcy.me/book/api/react.html
 
 裁剪插件： https://fengyuanchen.github.io/cropper
 
+较好的教程： https://wangdoc.com/javascript/
+
 #### 常用库：
 
 动态polyfill：https://cdn.polyfill.io/v2/polyfill.js
