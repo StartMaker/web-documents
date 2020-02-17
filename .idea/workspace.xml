@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eca8a0fb-6927-4b43-8bb4-9b68bd73974e" name="Default Changelist" comment="" />
+    <list default="true" id="eca8a0fb-6927-4b43-8bb4-9b68bd73974e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/documents.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -148,7 +157,7 @@
       <workItem from="1560327118070" duration="606000" />
       <workItem from="1560394936475" duration="5695000" />
       <workItem from="1562458227569" duration="318000" />
-      <workItem from="1581956460152" duration="508000" />
+      <workItem from="1581956460152" duration="754000" />
     </task>
     <task id="LOCAL-00001" summary="html语义化">
       <created>1560302693771</created>
@@ -182,12 +191,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29938000" />
+    <option name="totallyTimeSpent" value="30184000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2642706" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2642706" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -199,7 +208,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32962137" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32962137" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32962137" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
