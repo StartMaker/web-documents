@@ -53,3 +53,5 @@ HTTPS性能问题：
     
    《图解HTTP》
    《HTTP权威指南》
+   
+https的免费证书-openssl：https://jingyan.baidu.com/article/870c6fc3e3815bf03ee4be4f.html
