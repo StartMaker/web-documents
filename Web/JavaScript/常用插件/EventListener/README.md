@@ -1,0 +1,1 @@
+对dom2级addEventListener进行封装，可兼容低版本浏览器
