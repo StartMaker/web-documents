@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eca8a0fb-6927-4b43-8bb4-9b68bd73974e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/JavaScript/关于this.md" beforeDir="false" afterPath="$PROJECT_DIR$/Web/JavaScript/关于this.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/JavaScript/基础.md" beforeDir="false" afterPath="$PROJECT_DIR$/Web/JavaScript/基础.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/JavaScript/常用插件/call、apply、bind的模拟实现/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/JavaScript/常用插件/call、apply、bind的模拟实现/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +36,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jsx.switch.disabled" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -82,7 +80,7 @@
       <workItem from="1592882566461" duration="743000" />
       <workItem from="1592883343376" duration="901000" />
       <workItem from="1592884419166" duration="2486000" />
-      <workItem from="1592894314838" duration="204000" />
+      <workItem from="1592894314838" duration="376000" />
     </task>
     <task id="LOCAL-00001" summary="html语义化">
       <created>1560302693771</created>
