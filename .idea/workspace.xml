@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eca8a0fb-6927-4b43-8bb4-9b68bd73974e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Vue/常用api.md" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Vue/常用api.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +37,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../react-learn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -81,6 +82,9 @@
       <workItem from="1592884419166" duration="2486000" />
       <workItem from="1592894314838" duration="3088000" />
       <workItem from="1592898474602" duration="1932000" />
+      <workItem from="1592924624009" duration="853000" />
+      <workItem from="1593015010316" duration="375000" />
+      <workItem from="1593742633533" duration="3017000" />
     </task>
     <task id="LOCAL-00001" summary="html语义化">
       <created>1560302693771</created>
@@ -122,9 +126,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="html，css update" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="520" y="136" key="FileChooserDialogImpl" timestamp="1592896784658">
+    <state x="520" y="136" key="FileChooserDialogImpl" timestamp="1592924648697">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="520" y="136" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592896784658" />
+    <state x="520" y="136" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592924648697" />
   </component>
 </project>
