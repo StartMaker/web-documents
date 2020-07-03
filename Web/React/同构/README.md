@@ -1,7 +1,7 @@
 技术栈：
     
     前端：Vue、React、Angular
-    后端：nodeJS、express（一代node）、koa（二代node）、egg（阿里）
+    后端：nodeJS、express（一代node）、koa（二代node）、egg（阿里）、Nuxt
     
 实现流程：
 
@@ -14,3 +14,5 @@
         6、react代码接管页面操作
         7、react代码拿到浏览器上的路由地址
         8、js根据不同路由返回不同内容
+        
+主要api(可以在服务器上运行)：renderToString、renderToStaticMarkup
