@@ -133,8 +133,26 @@
         
    8、font-size-adjust：当字体无法加载使用后备字体时，后备字体会根据此属性的值调整字体的大小，通常会是原来的一半，所以在引入字体时，我们需要将其设置为100%
    
-   9、高级排版特性，略    
+   9、高级排版特性，略  
    
+   10、文字溢出省略
+   
+     多行溢出省略：
+        a、方案一
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-line-clamp: 2;
+          -moz-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          -moz-box-orient: vertical;  
+        b、方案二：伪类(需要做手动截断处理)
+          p:after{
+            content: '...'
+          }
+     单行溢出省略：
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
    ###### 盒子模型
    
    1、背景颜色：background-color和background，两者区别是background可以设置多个属性，而background-color只能设置其中一个，并且两者兼容性在浏览器上有所不同
@@ -221,10 +239,11 @@
  
 1、定位：position
  
-    static：块级元素垂直堆叠
-    relative：相对于初始位置进行定位
+    MDN： https://developer.mozilla.org/zh-CN/docs/Web/CSS/position
+    static：块级元素垂直堆叠，此时设置z-index是无效的
+    relative：相对于初始位置进行定位 （但是遇到table-*-group, table-row, table-column, table-cell, table-caption 元素无效）
     absolute：相对于非static定位的祖先元素或html元素，定位元素会脱离文档流===>适合弹出层等一些覆盖其他内容的组件
-    fixed：
+    fixed：根据浏览器窗口进行定位 （但是当父元素will-change、transform、perspective、filter不为none时，会根据父元素进行定位）
     
     z-index：堆叠次序，非static的元素会根据深度依次叠放，设置小于1的opacity也会触发堆叠次序，transform、filter也会触发此属性
     
@@ -294,7 +313,23 @@
     关于flex后备方案：（解决flex不兼容的情况）
         将可伸缩项加上float或者display：inline-block声明
         
-4、
+4、堆叠上下文
+
+    a、定义：
+        堆叠上下文是 HTML 元素的三维概念，这些 HTML 元素在一条假想的相对于面向（电脑屏幕的）视窗或者网页的用户的 z 轴上延伸，HTML 元素依据其自身属性按照优先级顺序占用层叠上下文的空间
+    b、如何创建堆叠上下文
+        根元素 (HTML),
+        z-index 值不为 "auto"的 绝对/相对定位，
+        一个 z-index 值不为 "auto"的 flex 项目 (flex item)，即：父元素 display: flex|inline-flex，
+        opacity 属性值小于 1 的元素（参考 the specification for opacity），
+        transform 属性值不为 "none"的元素，
+        mix-blend-mode 属性值不为 "normal"的元素，
+        filter值不为“none”的元素，
+        perspective值不为“none”的元素，
+        isolation 属性被设置为 "isolate"的元素，
+        position: fixed
+        在 will-change 中指定了任意 CSS 属性，即便你没有直接指定这些属性的值
+        -webkit-overflow-scrolling 属性被设置 "touch"的元素
 
 ##### 响应式布局
 
@@ -304,4 +339,4 @@
     
 2、浏览器视口：
 
-    
+

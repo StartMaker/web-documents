@@ -2,7 +2,7 @@
 
 报错查询：https://stackoverflow.com/
 
-api兼容性查询：https://www.caniuse.com/
+api兼容性查询：https://www.caniuse.com/    
 
 博客：掘金
 
@@ -19,6 +19,8 @@ react原理：https://react.jokcy.me/book/api/react.html
 裁剪插件： https://fengyuanchen.github.io/cropper
 
 较好的教程： https://wangdoc.com/javascript/
+
+虚拟滚动： https://juejin.im/post/5ae05bd66fb9a07aa631724b
 
 #### 常用库：
 

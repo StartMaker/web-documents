@@ -110,6 +110,8 @@
         位置方法：indexOf（查找数组下标序号），lastIndexOf（从后往前查找数组下标序号）==> 引用类型是对比的地址
         迭代方法：every、filter、forEach、map、some    
         归并方法：reduce（接收四个参数，前一个值、当前值、项的索引值、数组对象），reduceRight（从右边向前遍历）       
+        改变原数组的操作方法：splice
+        不改变原数组的操作方法：slice、concat、
         
  关于ES6新的数据类型：Symbol、Map和Set
  
