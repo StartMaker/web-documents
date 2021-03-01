@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="eca8a0fb-6927-4b43-8bb4-9b68bd73974e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/JavaScript/关于错误捕获.md" beforeDir="false" afterPath="$PROJECT_DIR$/Web/JavaScript/关于错误捕获.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/css/css.md" beforeDir="false" afterPath="$PROJECT_DIR$/Web/css/css.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NodeJs/基础/多进程.md" beforeDir="false" afterPath="$PROJECT_DIR$/NodeJs/基础/多进程.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +153,7 @@
       <workItem from="1612933819307" duration="372000" />
       <workItem from="1613618842345" duration="24000" />
       <workItem from="1614501673503" duration="1747000" />
-      <workItem from="1614569440598" duration="3132000" />
+      <workItem from="1614569440598" duration="5816000" />
     </task>
     <task id="LOCAL-00001" summary="html语义化">
       <created>1560302693771</created>
@@ -171,6 +188,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="html语义化" />
