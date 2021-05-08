@@ -40,14 +40,7 @@
     
 ##### 3、dom的两种节点集合：NodeList和HTMLCollection
 
-    NodeList： node.childNodes()、document.querySelectorAll()方法
-        
-        可以包含各种类型的节点
-        
-        可以使用forEach方法和length属性
+    NodeList： 类数组对象，当文档改变（删除节点）时，list中的不会发生变化，但是子节点变化
+    自带forEach等方法
     
-    HTMLCollection： document.getElementsByTagName()
-    
-        只能包含HTML元素节点
-    
-        实例是动态的集合，节点的变化会实时反映在集合中
+    HTMLCollection： 类数组对象

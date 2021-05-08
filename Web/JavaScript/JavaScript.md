@@ -10,7 +10,7 @@
 必看：
 
     JavaScript高级教程：1-13章，21-23章
-    JavaScript权威指南：     
+    JavaScript权威指南：
     
 三个重点：
 
@@ -125,4 +125,3 @@
         
         
  
-             
