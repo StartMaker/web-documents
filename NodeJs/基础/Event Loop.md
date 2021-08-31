@@ -112,3 +112,4 @@ http://lynnelv.github.io/js-event-loop-nodejs
         Mark-Compact：
             优势：能够处理内存碎片化
             缺点：处理很慢
+            
