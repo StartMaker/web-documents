@@ -1,0 +1,223 @@
+#### 问题引导
+
+- 什么是图层？
+- 图层在浏览器渲染中扮演者怎样角色？
+- 浏览器是如何绘制图层的？
+- GraphicsLayer Tree有着什么能力？
+- 在页面优化中，在写代码的时候，如何利用图层进行优化？（仅css方面，不包含js代码）
+- 为什么有些页面卡死了，css动画还能正常运转？
+
+#### 浏览器渲染页面过程
+
+在聊分层之前，我们先来复习下浏览器画面渲染的大概生成过程：
+
+- 构建 DOM 树
+  - HMTL 词法语法分析，转成对应的 AST 树
+- 样式计算：
+  - 把 CSS 转换为浏览器能够理解的结构，可以通过 document.styleSheets 查看
+  - 格式化样式属性，例如：rem -> px、white -> #FFFFFF 等
+  - 计算每个节点样式属性：根据 CSS 选择器与 DOM 树共同构建 render 树
+    
+- 生成布局树
+  - 这里去除一些 display: none 等隐藏样式的元素，因为它们不在 render 树中
+
+- 建立图层树（分层）
+  - 主要分为「显式合成」和「隐式合成」（当重绘时就只需要重绘当前图层）
+- 图层绘制
+  - 将图层树转换成绘制的指令列表
+- 栅格化(光栅化)，所谓栅格化，就是将图块转换为位图。
+  - 绘制列表交付给合成线程，进行图层分块，也就是划分图块。
+  - 渲染进程中专门维护了一个栅格化线程池，专门负责把图块交由 GPU 渲染
+  - GPU 渲染后将位图信息传递给合成线程，合成线程将位图信息在显示器显示
+
+- 合成和显示
+
+![图层合成](示例1.png)
+
+#### Layer（图层）
+
+上面是浏览器的渲染过程，我们这次着重讲下第4步。
+
+如果我们把红色区域单独抽离出来看，大概是下面的一个步骤：
+
+![渲染大致流程](示例2.jpeg)
+
+#### 基础概念
+
+这里补充介绍4个概念：
+
+- 渲染对象（RenderObject）
+  
+    一个 DOM 节点对应了一个渲染对象，渲染对象维持着 DOM 树的树形结构。渲染对象知道怎么去绘制 DOM 节点的内容，它通过向一个绘图上下文（GraphicsContext）发出必要的绘制指令来绘制 DOM 节点。
+
+- 渲染层（RenderLayer）
+  
+    浏览器渲染时第一个构建的层模型，位于同一个层级坐标空间的渲染对象都会被归并到同一个渲染层中，所以根据层叠上下文，不同层级坐标空间的的渲染对象将会形成多个渲染层，以此来体现它们之间的层叠关系。所以，对于满足形成层叠上下文条件的渲染对象，浏览器会自动为其创建新的渲染层。通常以下几种常见情况会让浏览器为其创建新的渲染层：
+
+    - document 元素
+    - position: relative | fixed | sticky | absolute
+    - opacity < 1
+    - will-change | fliter | mask | transform != none | overflow != visible
+- 图形层（GraphicsLayer）
+  
+    图形层是一个负责生成最终准备呈现出来的内容图形的层模型，它拥有一个图形上下文（GraphicsContext），图形上下文会负责输出该层的位图。存储在共享内存中的位图将作为纹理（可以把它想象成一个从主存储器移动到图像存储器的位图图像）上传到 GPU，最后由 GPU 将多个位图进行合成，然后绘制到屏幕上，此时，我们的页面也就展现到了屏幕上。
+    所以图形层是一个重要的渲染载体和工具，但它并不直接处理渲染层，而是处理合成层。
+    
+- 合成层（CompositingLayer）
+  
+    满足某些特殊条件的渲染层，会被浏览器自动提升为合成层。合成层拥有单独的图形层，而其他不是合成层的渲染层，则会和第一个拥有图形层的父层共用一个。
+    
+    那么一个渲染层满足哪些特殊条件时，才能被提升为合成层呢？这里也列举一些常见情况：
+    
+    - 3D transforms
+    - video、canvas、iframe
+    - opacity 动画转换
+    - position: fixed
+    - will-change
+    - animation 或 transition 设置了opacity、transform、fliter、backdropfilter
+#### 在 Chrome 中查看图层
+
+```$html
+<html>
+  <head>
+    <title>观察will-change</title>
+    <style>
+      .box {
+        /* will-change: transform, opacity; */
+        /* transform: translateZ(0); */
+        display: block;
+        float: left;
+        width: 40px;
+        height: 40px;
+        margin: 15px;
+        padding: 10px;
+        border: 1px solid rgb(136, 136, 136);
+        background: pink;
+        border-radius: 30px;
+        transition: border-radius 1s ease-out;
+        animation: Rotation 4s linear infinite;
+      }
+      @keyframes Rotation {
+        0% {
+          margin-left: 0px;
+        }
+        50% {
+          margin-left: 30px;
+        }
+        100% {
+          margin-left: 0px;
+        }
+      }
+      body {
+        font-family: Arial;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="controls">
+      <button id="start">start</button>
+      <button id="stop">stop</button>
+    </div>
+    <div>
+      <div class="box">box</div>
+      <div class="box">box</div>
+      <div class="box">box</div>
+      <div class="box">box</div>
+    </div>
+    <br />
+    <script>
+      let boxes = document.querySelectorAll(".box");
+      let boxes1 = document.querySelectorAll(".box1");
+      let start = document.getElementById("start");
+      let stop = document.getElementById("stop");
+      let stop_flag = false;
+
+      start.addEventListener("click", function () {
+        stop_flag = false;
+        requestAnimationFrame(render);
+      });
+
+      stop.addEventListener("click", function () {
+        stop_flag = true;
+      });
+
+      let rotate_ = 0;
+      let opacity_ = 0;
+      function render() {
+        if (stop_flag) return 0;
+        rotate_ = rotate_ + 6;
+        if (opacity_ > 1) opacity_ = 0;
+        opacity_ = opacity_ + 0.01;
+        const command = "rotate(" + rotate_ + "deg)";
+        for (let index = 0; index < boxes.length; index++) {
+          boxes[index].style.transform = command;
+          boxes[index].style.opacity = opacity_;
+        }
+        requestAnimationFrame(render);
+      }
+    </script>
+  </body>
+</html>
+```
+
+在上面的渲染机制里面，我们看到了layers，我们可以在 Chrome 中更直观地感受到 layer。
+
+#### 相同渲染层
+
+   在我们不启用 transform 的时候，我们会看到页面只有一个平面。相当于我们这个页面只有一层。
+    
+   那么这个时候，相当于这个页面我们只有一个渲染层，在动画运行时，我们需要对整个页面都进行重绘。
+
+![devtool](示例3.png)
+
+#### 创建新的渲染层
+
+现在我们为每一个 box 单独生成一个的图层，将上面的 transform: translateZ(0) 注释打开。这时候我们再去看 Layers，这时候我们能看到每个 box 都是一个被分隔开的图层。
+
+那么这时候在动画运行时，就只是重绘每个 box 渲染层，就是我们常说的 GPU 加速
+
+![](示例4.png)
+接下来我们点击一下 start 按钮再观察一下呢？
+![](示例5.png)
+我们会看到图层又变成了一个图层，所以这里 transform:translateZ(0) 的确开启了一个单独的图层，让我们开启了 GPU 加速，但是当 js 动画一加上时会坍缩成一个图层。
+
+
+#### 显式提升
+那么我们接下来把 will-change: transform, opacity; 注释打开，将图层显式提升成一个合成层，再看下效果
+
+![](示例6.png)
+可以看到我们现在开启了 js 动画，但是 box 的图层也没有坍缩。这里我们做了显式提升，所以将其提升为一个合成层，拥有了自己的图形层，不再复用父图层的图形层了。
+
+#### 在开发中的优化
+`浏览器默认是不会帮我们做任何的分层的`，也就是所有的 dom 节点，都会是在一个层上。
+
+这样就意味着我们页面的渲染粒度很大，在这个页面中哪怕有一些很小的变化，都会触发整个页面的重排、重绘，这样就影响了页面的渲染效率。
+
+我们知道像 react、vue 这样的框架，更新是组件级的，就是哪个组件更新了，那么就只会更新这个组件，从而达到提升渲染效率的效果。
+
+那么浏览器在渲染更新过程中，其中也有类似 react、vue 这样的「组件级更新」概念，就是分层渲染。
+
+也就是说，如果你把某部分 dom 节点，单独抽成给一个层，那么它的更新将会独立于整个页面，减小渲染粒度，从而达到优化渲染的效果。
+
+例如我们上文用到的 will-change
+
+#### 分层渲染
+
+👇🏻 那么我们可以直接使用下面这样的代码？
+
+```$css
+* {
+  will-change: all;
+}
+```
+当然不是！虽然分层能够给让利用 GPU 渲染加速且不影响其他的层。但是不限制的会反而会导致性能下降。
+
+- 当图层越多时，合成图层所花的时间越多，重绘时绘制的区域越小，更新越快。
+  
+- 当图层越少时，合成图层所花的时间越少，重绘时绘制的区域越大，更新越慢。
+  
+#### 参考
+
+- 图层爆炸带来的问题：https://juejin.cn/post/7152041443521986573
+

@@ -1,0 +1,81 @@
+#### 背景
+一直在做Hybrid App（混合模式移动应用）,就是传统意义上的App 内嵌H5开发, 目前已经开发一年多了, 突然有一天想着, 业务开发中总是调用客户端的能力, 比如说在App里面打开一个webView, 关闭一个webView, 或者调用原生客户端的能力,比如说, 调用手机的拍照能力等等,这个是怎么实现的(不想一直做api调用工程师)? 怀着这样的疑问, 看了一下公司的jss-sdk的源码, 于是有了这边关于客户端和H5通信的文章.
+#### 技术介绍
+JSBridge定义: bridge的英文意思是"桥梁", 这里可以理解为原生JS和客户端(native)通讯的桥梁,他可以通过一种方式将native能力提供给JavaScript，同时native也可能需要调用JavaScript的一些功能，而JSBridge就是JavaScript和native之间的桥梁，提供两者相互调用的能力。
+我们来看看原理图:
+
+#### 技术实现
+主要分为
+
+native -调用-> webView
+webView -调用-> natvie
+
+#### native调用webView能力实现:
+首先来说Native端调用Web端，这个比较简单，JavaScript作为解释性语言，最大的一个特性就是可以随时随地地通过解释器执行一段JS代码，所以可以将拼接的JavaScript代码字符串，传入JS解析器执行就可以，JS解析器在这里就是webView。
+
+#### webView调用native能力:
+Web调用Native端主要有两种方式
+
+##### 1、拦截Webview请求的URL Schema
+
+URL Schema是类URL的一种请求格式，格式如下：
+js复制代码<protocol>://<host>/<path>?<qeury>#fragment
+
+我们可以自定义JSBridge通信的URL Schema，比如：jsbridge://showToast?text=hello
+Native加载WebView之后，Web发送的所有请求都会经过WebView组件，所以Native可以重写WebView里的方法，拦截Web发起的请求，我们对请求的格式进行判断：
+如果符合我们自定义的URL Schema，对URL进行解析，拿到相关操作、操作，进而调用原生Native的方法
+如果不符合我们自定义的URL Schema，我们直接转发，请求真正的服务
+Web发送URL请求的方法有这么几种：
+
+- a标签
+- location.href
+- 使用iframe.src
+- 发送ajax请求
+
+这些方法，a标签需要用户操作，location.href可能会引起页面的跳转丢失调用，发送ajax请求Android没有相应的拦截方法，所以使用iframe.src是经常会使用的方案
+看看实现的伪代码
+
+```
+function iosBridge (action, param) {
+  param['methodName'] = action
+  //创建一个iframe
+  let iframe = env.createIframe()
+  let paramStr = JSON.stringify(param)
+  //iframe链接, 携带参数, 约定好的URL Schema格式, native端拦截, 拿到携带的方法
+  iframe.src = `xxx://xxx.hybrid.ios/?message=${encodeURIComponent(paramStr)}`
+  document.body.appendChild(iframe)
+  setTimeout(() => iframe.remove(), 300)
+}
+```
+
+总结: 这种方式主要是打开一个iframe, 然后加载和客户端约定好的URL Schema, 客户端通过拦截这个URL Schema, 拿到url上面携带的方法,然后再客户端调用, 就实现了webView调用native的能力了.
+
+##### 通过API全局注入
+
+这个方法会通过webView提供的接口，App将Native的相关接口注入到JS的Context（window）的对象中，一般来说这个对象内的方法名与Native相关方法名是相同的，Web端就可以直接在全局window下使用这个全局JS对象，进而调用原生端的方法。
+看看实现的伪代码
+```
+function andrExecute (action, param) {
+  try {
+    if (window.minApplication) {
+      let oriParam = JSON.stringify(param)
+      window.minMApplication.executeCmd(action, oriParam)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+```
+
+总结: 这种通过api注入的方式, 我们在window对象下面定义了一个minApplication对象,这个对象里面就是存储native端的方法了.
+完整的调用是双向通信，需要一个回调函数，技术实现上就是使用了两次单向通信.
+```
+//CB.getCallbackName就是客户端处理后的回调,这样就是实现了双向通信了
+enterDetail (obj, callback) {
+  this.compatInvoke('enterInfoDetail', obj, CB.getCallbackName(callback))
+}
+```
+
+##### 总结
+Hybrid开发是目前移动端开发的主流技术选项，其中Native和Web端的双向通信就离不开JSBridge
+其中Native调用Web端是直接在JS的Context直接执行JS代码，Web端调用Native端有两种方法，一种是基于URL Schema的拦截操作，另一种是向JS的Context（window）注入Api，其中注入Api是目前最好的选择.

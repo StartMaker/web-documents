@@ -1,12 +1,18 @@
-##### HTTPS
+###### tcp三次握手
 
-http://liuduo.me/2018/05/14/https-detail/
+    a、客户端向服务端发送SYN
+    b、服务端向客户端发送ACK确认和SYN
+    c、客户端向服务端发送ACK确认
 
-HTTPS = HTTP + SSL
+###### HTTPS
 
-HTTPS = HTTP + 加密 + 数字签名 + 认证
-
-SSL握手是在TCP连接结束后，HTTP建立之前进行的
+    http://liuduo.me/2018/05/14/https-detail/
+    
+    HTTPS = HTTP + SSL
+    
+    HTTPS = HTTP + 加密 + 数字签名 + 认证
+    
+    SSL握手是在TCP连接结束后，HTTP建立之前进行的
 
     http的不足之处：
         1、通信内容使用明文——内容可能被窃听
@@ -23,7 +29,7 @@ SSL握手是在TCP连接结束后，HTTP建立之前进行的
         有了数字签名，就可以验证数据的来源和完整性了，但是仅有数字签名还是有漏洞。使用数字签名进行加密数据传输，数据接收方必须有一个公钥，如果这个公钥被篡改为了攻击者的公钥，那攻击者就可以用自己的私钥发送篡改后的数据了。
         数字证书：由第三方权威机构颁发，难以伪造
         
-HTTPS通信过程：
+###### HTTPS通信过程：
     
     step 1、客户端向服务器端发送ClientHello报文，请求建立https
         ClientHello报文结构：
@@ -45,10 +51,10 @@ HTTPS通信过程：
     step 11、http通信
     step 12、客户端发送close_notify报文请求连接断开，之后再发送tcp FIN报文来关闭TCP通信
     
-HTTPS性能问题：
+####### HTTPS性能问题：
 
     HTTPS会做很多额外的事情，所以在性能上的开销比较大。
-    
+
 参考文献：
     
    《图解HTTP》
