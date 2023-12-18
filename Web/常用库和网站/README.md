@@ -48,4 +48,6 @@ MVVM组件库：antd、elementUI
 
 桌面应用：Electron（基于nodejs和谷歌浏览器）
 
+国内镜像下载homebrew：/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+
 node删除文件的命令库： rimraf

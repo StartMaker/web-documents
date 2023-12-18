@@ -30,4 +30,23 @@
 //柯里化缺陷：函数式编程的性能问题
 //优势：多次传参，参数分流，函数延后执行，写法便于观察
 
-//反柯里化：可以自己查询反柯里化
+function carry(fn) {
+  return function bind (...args) {
+    return function (...args2) {
+      // fn.length 获取fn入参个数
+      if (args2.length + args.length >= fn.length) {
+        return fn(...args, ...args2);
+      } else {
+        return bind(...args, ...args2);
+      }
+    }
+  }
+}
+
+const bb = carry((a, b, c, d) => {
+  return a + b + c + d;
+})
+
+console.log(bb(1)(1, 2)(3));
+
+
