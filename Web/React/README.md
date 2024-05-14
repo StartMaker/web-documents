@@ -21,3 +21,4 @@
     2、一些比如像ref的操作比class实现更复杂
 
 
+和vue的区别：https://worktile.com/kb/ask/19606.html
