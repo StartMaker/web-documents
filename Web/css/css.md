@@ -313,7 +313,7 @@
     关于flex后备方案：（解决flex不兼容的情况）
         将可伸缩项加上float或者display：inline-block声明
         
-4、堆叠上下文
+4、堆叠上下文（渲染图层）
 
     a、定义：
         堆叠上下文是 HTML 元素的三维概念，这些 HTML 元素在一条假想的相对于面向（电脑屏幕的）视窗或者网页的用户的 z 轴上延伸，HTML 元素依据其自身属性按照优先级顺序占用层叠上下文的空间
@@ -330,6 +330,7 @@
         position: fixed
         在 will-change 中指定了任意 CSS 属性，即便你没有直接指定这些属性的值
         -webkit-overflow-scrolling 属性被设置 "touch"的元素
+    c、渲染图层和复合图层有区别
 
 ##### 响应式布局
 
